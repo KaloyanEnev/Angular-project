@@ -1,0 +1,33 @@
+<div class="register-container">
+    <h2>Register</h2>
+    <form action="/register" method="POST">
+        <!-- Username Input with Label -->
+        <label for="username">Username</label>
+        <input type="text" class="input-field" id="username" name="username" placeholder="Enter your username" required>
+
+        <!-- Email Input with Label -->
+        <label for="email">Email</label>
+        <input type="email" class="input-field" id="email" name="email" placeholder="Enter your email" required>
+
+        <!-- Telephone Input with Label -->
+        <label for="tel">Telephone Number</label>
+        <input type="tel" class="input-field" id="tel" name="tel" placeholder="Enter your telephone number" required>
+
+        <!-- Password Input with Label -->
+        <label for="password">Password</label>
+        <input type="password" class="input-field" id="password" name="password" placeholder="Enter your password" required>
+
+        <!-- Confirm Password Input with Label -->
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" class="input-field" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+
+        <!-- Register Button -->
+        <button type="submit" class="register-button">Register</button>
+    </form>
+
+    <!-- Link to Login page -->
+    <div class="login-link">
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+</div>
+

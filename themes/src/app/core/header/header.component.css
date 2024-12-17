@@ -58,8 +58,9 @@
   
   /* Bottom Navigation Styling */
   .bottom-nav {
-    border-top: 1px solid #ddd;
+    border: 1px solid #ddd;
     padding-top: 10px;
+    border-color: #333;
   }
   
   .bottom-nav ul {
