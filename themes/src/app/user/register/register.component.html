@@ -1,33 +1,84 @@
 <div class="register-container">
-    <h2>Register</h2>
-    <form action="/register" method="POST">
-        <!-- Username Input with Label -->
-        <label for="username">Username</label>
-        <input type="text" class="input-field" id="username" name="username" placeholder="Enter your username" required>
+  <h2>Register</h2>
+  <form #form="ngForm" (ngSubmit)="register(form)">
+    <!-- Username Input with Label -->
+    <label for="username">Username</label>
+    <input
+      type="text"
+      class="input-field"
+      id="username"
+      name="username"
+      placeholder="Enter your username"
+      ngModel
+      #inputUsername="ngModel"
+      minlength="5"
+      required
+    />
 
-        <!-- Email Input with Label -->
-        <label for="email">Email</label>
-        <input type="email" class="input-field" id="email" name="email" placeholder="Enter your email" required>
+    <!-- Email Input with Label -->
+    <label for="email">Email</label>
+    <input
+      type="email"
+      class="input-field"
+      id="email"
+      name="email"
+      placeholder="Enter your email"
+      ngModel
+      #inputEmail="ngModel"
+      required
+    />
 
-        <!-- Telephone Input with Label -->
-        <label for="tel">Telephone Number</label>
-        <input type="tel" class="input-field" id="tel" name="tel" placeholder="Enter your telephone number" required>
+    <!-- Telephone Input with Label -->
+    <label for="tel">Telephone Number</label>
+    <input
+      type="tel"
+      class="input-field"
+      id="tel"
+      name="tel"
+      placeholder="Enter your telephone number"
+      ngModel
+      #inputTel="ngModel"
+      required
+    />
 
-        <!-- Password Input with Label -->
-        <label for="password">Password</label>
-        <input type="password" class="input-field" id="password" name="password" placeholder="Enter your password" required>
+    <!-- Password Input with Label -->
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="input-field"
+      id="password"
+      name="password"
+      placeholder="Enter your password"
+      ngModel
+      #inputPassword="ngModel"
+      required
+    />
 
-        <!-- Confirm Password Input with Label -->
-        <label for="confirm-password">Confirm Password</label>
-        <input type="password" class="input-field" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+    <!-- Confirm Password Input with Label -->
+    <label for="confirm-password">Confirm Password</label>
+    <input
+      type="password"
+      class="input-field"
+      id="confirm-password"
+      name="confirm-password"
+      placeholder="Confirm your password"
+      ngModel
+      #inputRePassword="ngModel"
+      required
+    />
 
-        <!-- Register Button -->
-        <button type="submit" class="register-button">Register</button>
-    </form>
+    <!-- Register Button -->
+    <button
+      class="register-button"
+      [disabled]="form.invalid"
+      [style]="{ backgroundColor: form.invalid ? 'grey' : '#234465' }"
+    >
+      Register
+    </button>
+  </form>
 
-    <!-- Link to Login page -->
-    <div class="login-link">
-        <p>Already have an account? <a href="/login">Login here</a></p>
-    </div>
+  <!-- Link to Login page -->
+  <div class="login-link">
+    <p>Already have an account? <a routerLink="/login">Login here</a></p>
+  </div>
 </div>
-

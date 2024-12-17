@@ -1,11 +1,36 @@
 <div class="login-container">
-    <h2>Login</h2>
-    <form action="/login" method="POST">
-        <input type="email" class="input-field" placeholder="Email" name="email" required>
-        <input type="password" class="input-field" placeholder="Password" name="password" required>
-        <button type="submit" class="login-button">Login</button>
-    </form>
-    <div class="register-link">
-        <p>Don't have an account? <a href="/register">Register here</a></p>
+  <h2>Login</h2>
+  <form #form="ngForm" (ngSubmit)="login(form)">
+    <input
+      type="email"
+      class="input-field"
+      placeholder="Email"
+      name="email"
+      (input)="resetError()"
+      ngModel
+      #inputEmail = "ngModel"
+      required
+    />
+    <input
+      type="password"
+      class="input-field"
+      placeholder="Password"
+      name="password"
+      (input)="resetError()"
+      ngModel
+      #inputPassword = "ngModel"
+      required
+      minlength="5"
+    />
+    <button  class="login-button" [disabled]="form.invalid">Login</button>
+  </form>
+  @if(errorMessage){
+
+    <div  class="error-message">
+      {{ errorMessage }}
     </div>
+  }
+  <div class="register-link">
+    <p>Don't have an account? <a href="/register">Register here</a></p>
+  </div>
 </div>
