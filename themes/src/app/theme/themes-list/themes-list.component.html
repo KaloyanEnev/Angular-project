@@ -1,52 +1,18 @@
 <div class="themes-list">
     <h2 class="list-title">Themes List</h2>
     <ul class="themes-container">
-        <!-- Example Theme Item -->
-        <li class="theme-item">
-            <a routerLink="/themes/1" class="theme-link">
-                <div class="theme-summary">
-                    <h3 class="theme-name">Theme Name 1</h3>
-                    <p class="theme-created-at">Created on: <span>December 1, 2024</span></p>
-                    <p class="theme-subscribers">Subscribers: <span>1250</span></p>
-                </div>
-            </a>
-        </li>
-        <li class="theme-item">
-            <a routerLink="/themes/1" class="theme-link">
-                <div class="theme-summary">
-                    <h3 class="theme-name">Theme Name 1</h3>
-                    <p class="theme-created-at">Created on: <span>December 1, 2024</span></p>
-                    <p class="theme-subscribers">Subscribers: <span>1250</span></p>
-                </div>
-            </a>
-        </li>
-        <li class="theme-item">
-            <a routerLink="/themes/1" class="theme-link">
-                <div class="theme-summary">
-                    <h3 class="theme-name">Theme Name 1</h3>
-                    <p class="theme-created-at">Created on: <span>December 1, 2024</span></p>
-                    <p class="theme-subscribers">Subscribers: <span>1250</span></p>
-                </div>
-            </a>
-        </li>
-        <li class="theme-item">
-            <a routerLink="/themes/1" class="theme-link">
-                <div class="theme-summary">
-                    <h3 class="theme-name">Theme Name 1</h3>
-                    <p class="theme-created-at">Created on: <span>December 1, 2024</span></p>
-                    <p class="theme-subscribers">Subscribers: <span>1250</span></p>
-                </div>
-            </a>
-        </li>
-        <li class="theme-item">
-            <a routerLink="/themes/1" class="theme-link">
-                <div class="theme-summary">
-                    <h3 class="theme-name">Theme Name 1</h3>
-                    <p class="theme-created-at">Created on: <span>December 1, 2024</span></p>
-                    <p class="theme-subscribers">Subscribers: <span>1250</span></p>
-                </div>
-            </a>
-        </li>
-        <!-- Add more theme items here -->
+        @for (theme of themes; track $index) {
+
+            <li class="theme-item">
+                <a [routerLink]="theme._id" class="theme-link">
+                    <div class="theme-summary">
+                        <h3 class="theme-name">{{theme.themeName}}</h3>
+                        <p class="theme-created-at">Created on: <span>{{theme.created_at}}</span></p>
+                        <p class="theme-subscribers">Subscribers: <span>{{theme.subscribers.length || 0}}</span></p>
+                    </div>
+                </a>
+            </li>
+        }
+       
     </ul>
 </div>
