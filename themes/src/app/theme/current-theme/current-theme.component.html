@@ -1,12 +1,13 @@
 <div class="theme-details-component">
   <!-- Theme Details Section -->
   <div class="theme-header">
-    <h2 class="theme-name">{{theme.themeName}}</h2>
+    <h2 class="theme-name">{{ theme.themeName }}</h2>
     <p class="theme-created-at">
-      Created on: <span id="createdAt">{{theme.created_at}}</span>
+      Created on: <span id="createdAt">{{ theme.created_at }}</span>
     </p>
     <p class="theme-subscribers">
-      Subscribers: <span id="subscribers">{{theme.subscribers.length || 0}}</span>
+      Subscribers:
+      <span id="subscribers">{{ theme.subscribers?.length || 0 }}</span>
     </p>
   </div>
 
@@ -19,14 +20,19 @@
       <!-- Example of comment -->
       @for (comment of theme.posts; track $index) {
 
-          <div class="comment">
-            <p>
-              <strong>{{comment.userId.username}}</strong>{{comment.text}}
-            </p>
-            <p>{{comment.likes.length || 0}}</p>
-          </div>
-       }
-    
+      <div class="comment">
+        <p>
+          <strong>{{ comment.userId.username }}</strong
+          >{{ comment.text }}
+        </p>
+        <p>{{ comment.likes.length || 0 }}</p>
+      </div>
+      @if(userId === comment.userId._id){
+
+        <button (click)="onDelete(theme._id, comment._id)">Delete</button>
+      }
+
+      }
     </div>
 
     <!-- Add Comment Form -->

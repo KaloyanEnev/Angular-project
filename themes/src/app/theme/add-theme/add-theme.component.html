@@ -1,29 +1,55 @@
 <div class="create-theme-container">
-  <h2>Create a New Theme</h2>
-  <form #form="ngForm" (ngSubmit)="addTheme(form)">
-    <label for="themeName">Theme Name</label>
-    <input
-      type="text"
-      class="input-field"
-      id="themeName"
-      name="themeName"
-      placeholder="Enter theme name"
-      required
-      minlength="5"
-    />
-
-
-    <label for="postText">Post Text</label>
-    <textarea
-      class="input-field"
-      id="postText"
-      name="postText"
-      placeholder="Enter your post text"
-      rows="6"
-      required
-      minlength="10"
-    ></textarea>
-
-    <button type="submit" class="create-theme-button">Create Theme</button>
-  </form>
-</div>
+    <h2>Create a New Theme</h2>
+    <form #form="ngForm" (ngSubmit)="addTheme(form)">
+      <!-- Theme Name Input -->
+      <label for="themeName">Theme Name</label>
+      <input
+        type="text"
+        class="input-field"
+        id="themeName"
+        name="themeName"
+        placeholder="Enter theme name"
+        required
+        minlength="5"
+        ngModel
+        #themeName="ngModel"
+      />
+      @if(themeName?.touched && themeName?.errors?.['required']){
+        <p class="error-message">Theme name is required!</p>
+      }
+      @if(themeName?.touched && themeName?.errors?.['minlength']){
+        <p class="error-message">Theme name must be at least 5 characters long!</p>
+      }
+  
+      <!-- Post Text Input -->
+      <label for="postText">Post Text</label>
+      <textarea
+        class="input-field"
+        id="postText"
+        name="postText"
+        placeholder="Enter your post text"
+        rows="6"
+        required
+        minlength="10"
+        ngModel
+        #postText="ngModel"
+      ></textarea>
+      @if(postText?.touched && postText?.errors?.['required']){
+        <p class="error-message">Post text is required!</p>
+      }
+      @if(postText?.touched && postText?.errors?.['minlength']){
+        <p class="error-message">Post text must be at least 10 characters long!</p>
+      }
+  
+      <!-- Create Theme Button -->
+      <button
+        type="submit"
+        class="create-theme-button"
+        [disabled]="form.invalid"
+        [style]="{ backgroundColor: form.invalid ? 'grey' : '#234465' }"
+      >
+        Create Theme
+      </button>
+    </form>
+  </div>
+  
