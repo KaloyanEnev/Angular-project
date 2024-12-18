@@ -13,7 +13,14 @@
       #inputUsername="ngModel"
       minlength="5"
       required
+      (input)="resetErrors()"
     />
+    @if(inputUsername?.touched && inputUsername?.errors?.['required']){
+      <p class="error-message">Username is required!</p>
+    }
+    @if(inputUsername?.touched && inputUsername?.errors?.['minlength']){
+      <p class="error-message">Username must be at least 5 characters long!</p>
+    }
 
     <!-- Email Input with Label -->
     <label for="email">Email</label>
@@ -26,7 +33,14 @@
       ngModel
       #inputEmail="ngModel"
       required
+      [appEmail]="domains"
     />
+    @if(inputEmail?.touched && inputEmail?.errors?.['required']){
+      <p class="error-message">Email is required!</p>
+    }
+    @if(inputEmail?.touched && inputEmail?.errors?.['emailValidator']){
+      <p class="error-message">Invalid email address!</p>
+    }
 
     <!-- Telephone Input with Label -->
     <label for="tel">Telephone Number</label>
@@ -39,7 +53,14 @@
       ngModel
       #inputTel="ngModel"
       required
+      minlength="9"
     />
+    @if(inputTel?.touched && inputTel?.errors?.['required']){
+      <p class="error-message">Telephone number is required!</p>
+    }
+    @if(inputTel?.touched && inputTel?.errors?.['minlength']){
+      <p class="error-message">Telephone number must be at least 9 characters long!</p>
+    }
 
     <!-- Password Input with Label -->
     <label for="password">Password</label>
@@ -52,30 +73,48 @@
       ngModel
       #inputPassword="ngModel"
       required
+      minlength="5"
     />
+    @if(inputPassword?.touched && inputPassword?.errors?.['required']){
+      <p class="error-message">Password is required!</p>
+    }
+    @if(inputPassword?.touched && inputPassword?.errors?.['minlength']){
+      <p class="error-message">Password must be at least 5 characters long!</p>
+    }
 
     <!-- Confirm Password Input with Label -->
-    <label for="confirm-password">Confirm Password</label>
+    <label for="rePassword">Confirm Password</label>
     <input
       type="password"
       class="input-field"
-      id="confirm-password"
-      name="confirm-password"
+      id="rePassword"
+      name="rePassword"
       placeholder="Confirm your password"
       ngModel
       #inputRePassword="ngModel"
       required
+      minlength="5"
     />
+    @if(inputRePassword?.touched && inputRePassword?.errors?.['required']){
+      <p class="error-message">Password confirmation is required!</p>
+    }
+    @if(inputRePassword?.touched && inputRePassword?.errors?.['minlength']){
+      <p class="error-message">Password confirmation must be at least 5 characters long!</p>
+    }
 
     <!-- Register Button -->
     <button
       class="register-button"
       [disabled]="form.invalid"
-      [style]="{ backgroundColor: form.invalid ? 'grey' : '#234465' }"
     >
       Register
     </button>
   </form>
+
+  <!-- Error Message -->
+  @if(errorMessage){
+    <p class="error-message">{{ errorMessage }}</p>
+  }
 
   <!-- Link to Login page -->
   <div class="login-link">

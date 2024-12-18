@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { EmailDirective } from '../../directives/email.directive';
+import { DOMAINS } from '../../constant';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,RouterLink,EmailDirective],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  domains = DOMAINS
   errorMessage: string = ''
   constructor(private userService: UserService, private router: Router) {}
 
@@ -27,6 +30,7 @@ export class LoginComponent {
       error: (error) => {
         // Extract and display the server error message
         this.errorMessage = error.error?.message || 'Invalid credentials. Please try again.';
+        form.reset()
       },
     });
   }

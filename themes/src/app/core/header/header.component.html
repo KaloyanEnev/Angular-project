@@ -4,12 +4,23 @@
     <!-- Top Navigation -->
     <nav class="top-nav">
       <ul>
-        <li>
-          <a routerLink="/login" class="nav-link">Login</a>
+        @if(isLoggedIn){
+
+          <li>
+            <a routerLink="/profile">{{username}}'s profile</a>
         </li>
         <li>
-          <a routerLink="/register" class="nav-link">Register</a>
+            <a (click)="logout()">Logout</a>
         </li>
+        }
+        @else {
+          <li>
+            <a routerLink="/login" class="nav-link">Login</a>
+          </li>
+          <li>
+            <a routerLink="/register" class="nav-link">Register</a>
+          </li>
+        }
       </ul>
     </nav>
   

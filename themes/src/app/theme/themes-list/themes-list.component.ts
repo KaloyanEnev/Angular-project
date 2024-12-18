@@ -20,7 +20,7 @@ export class ThemesListComponent {
     this.apiService.getThemes().subscribe(t =>{
 
        this.themes= t;
-       this.themes = this.themes.filter(theme => theme.subscribers.length > 4);
+      //  this.themes = this.themes.filter(theme => theme.subscribers.length > 4);
        
        
     });
