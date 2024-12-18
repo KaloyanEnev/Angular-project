@@ -10,4 +10,5 @@ export interface Post {
   created_at: string;
   updatedAt: string;
   __v: number;
+  hasLiked? : boolean
 }

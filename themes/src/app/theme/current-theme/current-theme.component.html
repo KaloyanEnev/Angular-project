@@ -9,6 +9,11 @@
       Subscribers:
       <span id="subscribers">{{ theme.subscribers?.length || 0 }}</span>
     </p>
+ @if(!hasSubscribed){
+
+  <button (click)="subscribeToTheme(theme._id)">Like</button>
+
+ }
   </div>
 
   <!-- Comments Section -->
@@ -20,29 +25,58 @@
       <!-- Example of comment -->
       @for (comment of theme.posts; track $index) {
 
-      <div class="comment">
-        <p>
-          <strong>{{ comment.userId.username }}</strong
-          >{{ comment.text }}
-        </p>
-        <p>{{ comment.likes.length || 0 }}</p>
-      </div>
-      @if(userId === comment.userId._id){
-
-        <button (click)="onDelete(theme._id, comment._id)">Delete</button>
-      }
+        <div class="comment">
+          <p>
+            <strong>{{ comment.userId.username }}</strong> {{ comment.text }}
+          </p>
+          <p>{{ comment.likes?.length || 0 }} likes</p>
+          
+          <div class="comment-buttons">
+            @if(userId === comment.userId._id) {
+              <button class="delete-button" (click)="onDelete(theme._id, comment._id)">Delete</button>
+            }
+        
+            @if(isLoggedIn && !comment.hasLiked) {
+              <button (click)="likePost(comment._id)">Like</button>
+            }
+          </div>
+        </div>
 
       }
     </div>
 
     <!-- Add Comment Form -->
-    <div class="add-comment">
-      <h4>Add a Comment</h4>
-      <textarea
-        id="comment-text"
-        placeholder="Write your comment here..."
-      ></textarea>
-      <button class="comment-button" onclick="addComment()">Submit</button>
+     @if(isLoggedIn){
+
+       <div class="add-comment">
+         <h4>Add a Comment</h4>
+         <form #form="ngForm" (ngSubmit)="addComment(form)">
+
+           <textarea
+             id="postText"
+             placeholder="Write your comment here..."
+             name="postText"
+             required
+             minlength="10"
+             ngModel
+             #inputPostText = "ngModel"
+
+           ></textarea>
+           @if(inputPostText?.touched) {
+            <div>
+              @if(inputPostText?.errors?.['required']) {
+                <p class="error">Comment is required!</p>
+              }
+              @if(inputPostText?.errors?.['minlength']) {
+                <p class="error">Comment must be at least 10 characters!</p>
+              }
+            </div>
+          }
+      
+          <!-- Submit button -->
+          <button class="comment-button" [disabled]="form.invalid">Submit</button>
+         </form>
+       </div>
+      }
     </div>
-  </div>
 </div>

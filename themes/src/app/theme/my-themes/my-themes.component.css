@@ -1,0 +1,66 @@
+.themes-list {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 20px auto ;
+    font-family: 'Arial', sans-serif;
+}
+
+.list-title {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.themes-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.theme-item {
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 20px;
+}
+
+.theme-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.theme-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 15px;
+}
+
+.theme-summary {
+    padding: 15px;
+}
+
+.theme-name {
+    font-size: 22px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.theme-created-at,
+.theme-subscribers {
+    font-size: 16px;
+    color: #666;
+}
+
+.theme-created-at span,
+.theme-subscribers span {
+    font-weight: 500;
+}

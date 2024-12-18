@@ -50,5 +50,16 @@ export class ApiService {
   deletePost(themeId: string, postId: string) {
     return this.http.delete(`/api/themes/${themeId}/posts/${postId}`);
   }
+  addPost(themeId : string, postText: string){
+    const payload = {postText}
+    return this.http.post(`/api/themes/${themeId}`,payload)
+  }
+  likePost(postId: string){
+    const payload = {postId};
+    return this.http.put(`/api/likes/${postId}`,null)
+  }
+  subscribeToTheme(themeId: string){
+    return this.http.put(`/api/themes/${themeId}`,null)
+  }
 }
 

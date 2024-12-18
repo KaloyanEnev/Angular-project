@@ -5,21 +5,104 @@
                 <img src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-image">
             </div>
         </div>
-        <h2>Your Profile</h2>
-        <div class="profile-info">
-            <div class="data-field">
-                <label for="username">Username</label>
-                <p id="username">JohnDoe</p>
+        @if(!isEditMode){
+
+            <h2>Your Profile</h2>
+            <div class="profile-info">
+                <div class="data-field">
+                    <label for="username">Username</label>
+                    <p id="username">{{profileDetails.username}}</p>
+                </div>
+                <div class="data-field">
+                    <label for="email">Email</label>
+                    <p id="email">{{profileDetails.email}}</p>
+                </div>
+                <div class="data-field">
+                    <label for="tel">Telephone</label>
+                    <p id="tel">{{profileDetails.tel}}</p>
+                </div>
             </div>
-            <div class="data-field">
-                <label for="email">Email</label>
-                <p id="email">johndoeexample.com</p>
-            </div>
-            <div class="data-field">
-                <label for="tel">Telephone</label>
-                <p id="tel">+1234567890</p>
-            </div>
-        </div>
-        <button class="edit-button">Edit Profile</button>
+            <button class="edit-button" (click)="toggleEditMode()">Edit Profile</button>
+        }
+        @else {
+            <!-- EDIT MODE -->
+            <ng-container>
+              <form [formGroup]="form" (ngSubmit)="handleSaveProfile()">
+                <div class="profile-input-group">
+                  <p class="profile-label">Username:</p>
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    value="Johny"
+                    formControlName="username"
+                    class="profile-input"
+                  />
+                </div>
+                @if(form.get('username')?.touched){
+                  <div>
+                    @if(form.get('username')?.errors?.['required']){
+                      <p class="profile-error">Username is required!</p>
+                    }
+                    @if(form.get('username')?.errors?.['minlength']){
+                      <p class="profile-error">Username must be at least 5 characters!</p>
+                    }
+                  </div>
+                }
+          
+                <div class="profile-input-group">
+                  <p class="profile-label">Email:</p>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value="john.doe@gmail.com"
+                    formControlName="email"
+                    class="profile-input"
+                  />
+                </div>
+                @if(form.get('email')?.touched){
+                  <div>
+                    @if(form.get('email')?.errors?.['required']){
+                      <p class="profile-error">Email is required!</p>
+                    }
+                    @if(form.get('email')?.errors?.['emailValidator']){
+                      <p class="profile-error">Email is not valid!</p>
+                    }
+                  </div>
+                }
+          
+                <div class="profile-input-group">
+                  <p class="profile-label">Phone:</p>
+                  <div class="profile-tel-wrapper">
+                    <select name="select-tel" id="select-tel" class="profile-tel-select">
+                      <option value="00359">+359</option>
+                    </select>
+                    <input
+                      type="text"
+                      name="tel"
+                      id="tel"
+                      value="885 888 888"
+                      formControlName="tel"
+                      class="profile-input"
+                    />
+                  </div>
+                </div>
+          
+                <div class="profile-btn-wrapper">
+                  <button class="profile-cancel-button" (click)="onCancel($event)">Cancel</button>
+                  <button
+                    class="profile-save-button"
+                    [disabled]="form.invalid"
+                    [style]="{ backgroundColor: form.invalid ? 'grey' : '#5cb85c' }"
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </ng-container>
+          }
+          
+          
     </div>
 </div>

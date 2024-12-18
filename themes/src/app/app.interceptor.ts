@@ -17,7 +17,7 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
   }
   // const errorMessageService = inject(ErrorMessageService);
   // OLD WAS JUST return next(req) before adding error hanling
-  console.log(req);
+  //console.log(req);
   
   return next(req)
   // .pipe(
