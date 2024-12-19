@@ -2,7 +2,7 @@
     <div class="profile-box">
         <div class="profile-header">
             <div class="profile-image-container">
-                <img src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-image">
+                <img src="profile-logo.jpg" alt="Profile Picture" class="profile-image">
             </div>
         </div>
         @if(!isEditMode){
@@ -10,16 +10,16 @@
             <h2>Your Profile</h2>
             <div class="profile-info">
                 <div class="data-field">
-                    <label for="username">Username</label>
+                    <label for="username">Username:</label>
                     <p id="username">{{profileDetails.username}}</p>
                 </div>
                 <div class="data-field">
-                    <label for="email">Email</label>
+                    <label for="email">Email:</label>
                     <p id="email">{{profileDetails.email}}</p>
                 </div>
                 <div class="data-field">
-                    <label for="tel">Telephone</label>
-                    <p id="tel">{{profileDetails.tel}}</p>
+                    <label for="tel">Telephone:</label>
+                    <p id="tel">+359 {{profileDetails.tel}}</p>
                 </div>
             </div>
             <button class="edit-button" (click)="toggleEditMode()">Edit Profile</button>

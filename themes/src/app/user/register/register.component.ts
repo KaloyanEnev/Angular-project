@@ -17,7 +17,6 @@ export class RegisterComponent {
   errorMessage : string = ''
   constructor(private userService : UserService,private router: Router){}
  register(form:NgForm){
-console.log(form.invalid);
 const {
   username,
   email,

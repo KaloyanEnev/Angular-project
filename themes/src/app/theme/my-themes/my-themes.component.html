@@ -1,18 +1,24 @@
 <div class="themes-list">
     <h2 class="list-title">Themes List</h2>
-    <ul class="themes-container">
-        @for (theme of themes; track $index) {
+    @if(themes.length>0){
 
-            <li class="theme-item">
-                <a [routerLink]="theme._id" class="theme-link">
-                    <div class="theme-summary">
-                        <h3 class="theme-name">{{theme.themeName}}</h3>
-                        <p class="theme-created-at">Created on: <span>{{theme.created_at}}</span></p>
-                        <p class="theme-subscribers">Subscribers: <span>{{theme.subscribers.length || 0}}</span></p>
-                    </div>
-                </a>
-            </li>
-        }
-       
-    </ul>
+        <ul class="themes-container">
+            @for (theme of themes; track $index) {
+    
+                <li class="theme-item">
+                    <a [routerLink]="theme._id" class="theme-link">
+                        <div class="theme-summary">
+                            <h3 class="theme-name">{{theme.themeName}}</h3>
+                            <p class="theme-created-at">Created on: <span>{{theme.created_at  | date :"yyyy-mm-dd hh:mm:ss"}}</span></p>
+                            <p class="theme-subscribers">Subscribers: <span>{{theme.subscribers.length || 0}}</span></p>
+                        </div>
+                    </a>
+                </li>
+            }
+           
+        </ul>
+    }
+    @else {
+        <h3 style="text-align: center;">You haven't created a theme yet!</h3>
+    }
 </div>

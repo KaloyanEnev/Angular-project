@@ -3,47 +3,59 @@
   <div class="theme-header">
     <h2 class="theme-name">{{ theme.themeName }}</h2>
     <p class="theme-created-at">
-      Created on: <span id="createdAt">{{ theme.created_at }}</span>
+      Created on: <span id="createdAt">{{ theme.created_at | date :"yyyy-mm-dd hh:mm:ss" }}</span>
     </p>
     <p class="theme-subscribers">
       Subscribers:
       <span id="subscribers">{{ theme.subscribers?.length || 0 }}</span>
     </p>
- @if(!hasSubscribed){
+ @if(!hasSubscribed && isLoggedIn){
 
-  <button (click)="subscribeToTheme(theme._id)">Like</button>
+  <button class="subscribe-button" (click)="subscribeToTheme(theme._id)">Subscribe</button>
 
  }
   </div>
 
   <!-- Comments Section -->
   <div class="comments-section">
-    <h3>Comments</h3>
+    @if(theme.posts.length>0){
 
-    <!-- Display comments dynamically here -->
-    <div id="comments-container">
-      <!-- Example of comment -->
-      @for (comment of theme.posts; track $index) {
-
-        <div class="comment">
-          <p>
-            <strong>{{ comment.userId.username }}</strong> {{ comment.text }}
-          </p>
-          <p>{{ comment.likes?.length || 0 }} likes</p>
+      <h3>Comments:</h3>
+  
+      <!-- Display comments dynamically here -->
+      <div id="comments-container">
+        <!-- Example of comment -->
+        @for (comment of theme.posts; track $index) {
+  
+          <div class="comment">
+            <p>
+              <strong>{{ comment.userId.username }}:</strong> {{ comment.text }}
+            </p>
+            <p>
+              <strong>Posted: {{ comment.created_at | elapsedTime}}</strong> 
+            </p>
+            <p class="likes-count">
+              <span>{{ comment.likes?.length || 0 }}</span> likes
+            </p>
+            
+            <div class="comment-buttons">
+             
           
-          <div class="comment-buttons">
-            @if(userId === comment.userId._id) {
-              <button class="delete-button" (click)="onDelete(theme._id, comment._id)">Delete</button>
-            }
-        
-            @if(isLoggedIn && !comment.hasLiked) {
-              <button (click)="likePost(comment._id)">Like</button>
-            }
+              @if(isLoggedIn && !comment.hasLiked) {
+                <button (click)="likePost(comment._id)">Like</button>
+              }
+              @if(userId === comment.userId._id) {
+                <button class="delete-button" (click)="onDelete(theme._id, comment._id)">Delete</button>
+              }
+            </div>
           </div>
-        </div>
-
-      }
-    </div>
+  
+        }
+      </div>
+    }
+    @else {
+      <h3>No comments for this theme yet!</h3>
+    }
 
     <!-- Add Comment Form -->
      @if(isLoggedIn){

@@ -32,12 +32,32 @@
     margin-top: 6px;
 }
 
+/* Subscribe Button */
+.subscribe-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 16px;
+}
+
+.subscribe-button:hover {
+    background-color: #45a049;
+}
+
 /* Comments Section */
 .comments-section {
     margin-top: 40px;
 }
 
-h3 {
+.comments-section h3 {
     font-size: 24px;
     font-weight: 500;
     color: #333;
@@ -45,28 +65,117 @@ h3 {
     text-align: center;
 }
 
-/* Individual Comment Styling */
+/* Enhanced Comment Container */
 #comments-container .comment {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 12px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 24px;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
 #comments-container .comment:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* Comment Author and Timestamp */
+#comments-container .comment strong {
+    color: #2563eb;
+    font-size: 16px;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+/* Comment Posted Time */
+#comments-container .comment p strong:last-of-type {
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Comment Content */
 #comments-container .comment p {
+    margin: 0;
     font-size: 15px;
-    color: #555;
+    color: #374151;
     line-height: 1.6;
+    letter-spacing: 0.2px;
 }
 
-/* Add Comment Section */
+/* Likes Count Styling */
+.comment p.likes-count {
+    font-size: 14px;
+    color: #64748b;
+    margin-top: 4px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.comment p.likes-count span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Enhanced Comment Buttons */
+.comment-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.comment-buttons button {
+    background-color: #f8fafc;
+    color: #3b82f6;
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.comment-buttons button:hover {
+    background-color: #eff6ff;
+    transform: translateY(-1px);
+}
+
+.comment-buttons .delete-button {
+    color: #ef4444;
+    border-color: #fecaca;
+    background-color: #fef2f2;
+}
+
+.comment-buttons .delete-button:hover {
+    background-color: #fee2e2;
+    border-color: #fca5a5;
+}
+
+/* Add Comment Form */
+.add-comment {
+    margin-top: 32px;
+    padding: 24px;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
 .add-comment h4 {
     font-size: 20px;
     font-weight: 600;
@@ -75,25 +184,27 @@ h3 {
     text-align: center;
 }
 
-textarea {
+.add-comment textarea {
     width: 100%;
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    resize: none;
-    font-size: 16px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 15px;
     line-height: 1.6;
     color: #333;
-    background-color: #fafafa;
-    transition: border-color 0.3s ease;
+    transition: all 0.2s ease;
+    min-height: 120px;
+    resize: vertical;
 }
 
-textarea:focus {
-    border-color: #007bff;
+.add-comment textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
     outline: none;
 }
 
+/* Comment Submit Button */
 .comment-button {
     background-color: #007bff;
     color: #fff;
@@ -103,44 +214,51 @@ textarea:focus {
     font-weight: 600;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    margin-top: 12px;
 }
 
 .comment-button:hover {
     background-color: #0056b3;
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
-/* Responsive Styling */
-/* Button Styling */
-.comment-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 10px;
+.comment-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
 }
 
-.comment-buttons button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
+/* Error Message Styling */
+.error {
+    color: #ef4444;
     font-size: 14px;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    background-color: #fef2f2;
+    border-radius: 6px;
 }
 
-.comment-buttons button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .theme-details-component {
+        padding: 20px;
+        margin: 10px;
+    }
 
-.comment-buttons .delete-button {
-    background-color: #dc3545;
-}
+    .theme-name {
+        font-size: 24px;
+    }
 
-.comment-buttons .delete-button:hover {
-    background-color: #a71d2a;
+    .comment-buttons {
+        flex-wrap: wrap;
+    }
+
+    .comment-buttons button {
+        flex: 1;
+        min-width: 120px;
+    }
 }

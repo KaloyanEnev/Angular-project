@@ -1,6 +1,7 @@
 <div class="login-container">
   <h2>Login</h2>
   <form #form="ngForm" (ngSubmit)="login(form)">
+    <label for="email">Email:</label>
     <input
       type="email"
       class="input-field"
@@ -24,6 +25,7 @@
         }
       </div>
       }
+      <label for="password">Password:</label>
     <input
       
       type="password"
@@ -48,7 +50,11 @@
       </div>
       }
 
-    <button class="login-button" [disabled]="form.invalid">Login</button>
+    <button 
+    class="login-button"
+    [class.login-button]="!form.invalid"
+  [class.disabled-button]="form.invalid"
+     [disabled]="form.invalid">Login</button>
   </form>
   @if(errorMessage){
 

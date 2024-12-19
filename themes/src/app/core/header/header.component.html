@@ -4,25 +4,29 @@
     <!-- Top Navigation -->
     <nav class="top-nav">
       <ul>
-        @if(isLoggedIn){
-
-          <li>
-            <a routerLink="/profile">{{username}}'s profile</a>
-        </li>
-        <li>
-            <a (click)="logout()">Logout</a>
-        </li>
-        }
-        @else {
-          <li>
-            <a routerLink="/login" class="nav-link">Login</a>
-          </li>
-          <li>
-            <a routerLink="/register" class="nav-link">Register</a>
-          </li>
-        }
+          @if(isLoggedIn){
+              <li>
+                  <a routerLink="/profile" class="profile-link">
+                      <i class="fas fa-user-circle"></i> 
+                      {{username}}'s profile
+                  </a>
+              </li>
+              <li>
+                  <button class="logout-button" (click)="logout()">
+                      Logout
+                  </button>
+              </li>
+          }
+          @else {
+              <li>
+                  <a routerLink="/login" class="nav-link">Login</a>
+              </li>
+              <li>
+                  <a routerLink="/register" class="nav-link">Register</a>
+              </li>
+          }
       </ul>
-    </nav>
+  </nav>
   
     <!-- Logo and Header Title -->
     <div class="header-main">
@@ -37,21 +41,25 @@
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
       <ul>
+       
         <li>
           <a routerLink="/" class="nav-link">Home</a>
         </li>
         <li>
           <a routerLink="/themes" class="nav-link">Themes</a>
         </li>
-        <li>
-          <a routerLink="/add-theme" class="nav-link">New Theme</a>
-        </li>
-        <li>
-          <a routerLink="/my-themes" class="nav-link">My Themes</a>
-        </li>
-        <li>
-            <a routerLink="/profile" class="nav-link">My Profile</a>
+        @if(isLoggedIn){
+
+          <li>
+            <a routerLink="/add-theme" class="nav-link">New Theme</a>
           </li>
+          <li>
+            <a routerLink="/my-themes" class="nav-link">My Themes</a>
+          </li>
+          <li>
+              <a routerLink="/profile" class="nav-link">My Profile</a>
+            </li>
+        }
       </ul>
     </nav>
   

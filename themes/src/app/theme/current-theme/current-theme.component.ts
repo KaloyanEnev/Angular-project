@@ -6,11 +6,13 @@ import { UserService } from '../../user/user.service';
 import { User } from '../../types/user';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Post } from '../../types/post';
+import { ElapsedTimePipe } from '../../pipes/elapsed-time.pipe';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-current-theme',
   standalone: true,
-  imports: [RouterLink,FormsModule],
+  imports: [RouterLink,FormsModule,ElapsedTimePipe,DatePipe],
   templateUrl: './current-theme.component.html',
   styleUrl: './current-theme.component.css',
 })
@@ -20,6 +22,7 @@ export class CurrentThemeComponent {
   } 
   hasLiked = false;
   theme = {} as Theme;
+  
   constructor(
     private userService: UserService,
     private apiService: ApiService,
@@ -69,7 +72,9 @@ export class CurrentThemeComponent {
     // Make API call to add the post
     this.apiService.addPost(idTheme, postText).subscribe({
       next: (data) => {
-       console.log(data);
+       this.loadThemeData();
+
+       this.navRouter.navigate([`/themes/${idTheme}`])
        
   
         // Reset the form after the post is added
@@ -81,7 +86,16 @@ export class CurrentThemeComponent {
     });
   }
   likePost(postId: string){
-    this.apiService.likePost(postId).subscribe()
+    this.apiService.likePost(postId).subscribe({
+      next: (data) => {
+       this.loadThemeData();
+       this.navRouter.navigate([`/themes/${this.theme._id}`])
+
+      },
+      error: (err) => {
+        console.error('Error adding comment:', err);
+      }
+    })
   }
   updateLikesWithHasLiked(theme: any, userId: string): void {
     theme.posts.forEach((post: any) => {
@@ -100,9 +114,23 @@ export class CurrentThemeComponent {
   hasSubscribed = false;;
 
   subscribeToTheme(themeId: string){
-    return this.apiService.subscribeToTheme(themeId).subscribe()
+    return this.apiService.subscribeToTheme(themeId).subscribe({
+      next : (data) => {
+        this.loadThemeData()
+      }
+    })
 
   }
+  private loadThemeData(): void {
+    const id = this.router.snapshot.params['themeId'];
+    this.apiService.getSingleTheme(id).subscribe((theme) => {
+      this.userId = this.userService.user?._id;
+      this.theme = theme;
+      this.updateLikesWithHasLiked(this.theme, this.userId);
+      this.hasSubscribed = this.checkIfHasSubscribed(this.theme, this.userId);
+    });
+  }
+
     
   }
 

@@ -2,7 +2,7 @@
   <h2>Register</h2>
   <form #form="ngForm" (ngSubmit)="register(form)">
     <!-- Username Input with Label -->
-    <label for="username">Username</label>
+    <label for="username">Username:</label>
     <input
       type="text"
       class="input-field"
@@ -16,14 +16,14 @@
       (input)="resetErrors()"
     />
     @if(inputUsername?.touched && inputUsername?.errors?.['required']){
-      <p class="error-message">Username is required!</p>
+      <p class="error">Username is required!</p>
     }
     @if(inputUsername?.touched && inputUsername?.errors?.['minlength']){
-      <p class="error-message">Username must be at least 5 characters long!</p>
+      <p class="error">Username must be at least 5 characters long!</p>
     }
 
     <!-- Email Input with Label -->
-    <label for="email">Email</label>
+    <label for="email">Email:</label>
     <input
       type="email"
       class="input-field"
@@ -36,14 +36,14 @@
       [appEmail]="domains"
     />
     @if(inputEmail?.touched && inputEmail?.errors?.['required']){
-      <p class="error-message">Email is required!</p>
+      <p class="error">Email is required!</p>
     }
     @if(inputEmail?.touched && inputEmail?.errors?.['emailValidator']){
-      <p class="error-message">Invalid email address!</p>
+      <p class="error">Invalid email address!</p>
     }
 
     <!-- Telephone Input with Label -->
-    <label for="tel">Telephone Number</label>
+    <label for="tel">Telephone Number:</label>
     <input
       type="tel"
       class="input-field"
@@ -52,18 +52,16 @@
       placeholder="Enter your telephone number"
       ngModel
       #inputTel="ngModel"
-      required
+      
       minlength="9"
     />
-    @if(inputTel?.touched && inputTel?.errors?.['required']){
-      <p class="error-message">Telephone number is required!</p>
-    }
+   
     @if(inputTel?.touched && inputTel?.errors?.['minlength']){
-      <p class="error-message">Telephone number must be at least 9 characters long!</p>
+      <p class="error">Telephone number must be at least 9 characters long!</p>
     }
 
     <!-- Password Input with Label -->
-    <label for="password">Password</label>
+    <label for="password">Password:</label>
     <input
       type="password"
       class="input-field"
@@ -76,14 +74,14 @@
       minlength="5"
     />
     @if(inputPassword?.touched && inputPassword?.errors?.['required']){
-      <p class="error-message">Password is required!</p>
+      <p class="error">Password is required!</p>
     }
     @if(inputPassword?.touched && inputPassword?.errors?.['minlength']){
-      <p class="error-message">Password must be at least 5 characters long!</p>
+      <p class="error">Password must be at least 5 characters long!</p>
     }
 
     <!-- Confirm Password Input with Label -->
-    <label for="rePassword">Confirm Password</label>
+    <label for="rePassword">Confirm Password:</label>
     <input
       type="password"
       class="input-field"
@@ -96,15 +94,17 @@
       minlength="5"
     />
     @if(inputRePassword?.touched && inputRePassword?.errors?.['required']){
-      <p class="error-message">Password confirmation is required!</p>
+      <p class="error">Password confirmation is required!</p>
     }
     @if(inputRePassword?.touched && inputRePassword?.errors?.['minlength']){
-      <p class="error-message">Password confirmation must be at least 5 characters long!</p>
+      <p class="error">Password confirmation must be at least 5 characters long!</p>
     }
 
     <!-- Register Button -->
     <button
       class="register-button"
+      [class.register-button]="!form.invalid"
+      [class.disabled-button]="form.invalid"
       [disabled]="form.invalid"
     >
       Register

@@ -43,13 +43,14 @@
   
       <!-- Create Theme Button -->
       <button
-        type="submit"
-        class="create-theme-button"
-        [disabled]="form.invalid"
-        [style]="{ backgroundColor: form.invalid ? 'grey' : '#234465' }"
-      >
-        Create Theme
-      </button>
+  type="submit"
+  class="create-theme-button"
+  [disabled]="form.invalid"
+  [class.create-theme-button]="!form.invalid"
+  [class.disabled-button]="form.invalid"
+>
+  Create Theme
+</button>
     </form>
   </div>
   

@@ -8,6 +8,8 @@ import { AddThemeComponent } from './theme/add-theme/add-theme.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MyThemesComponent } from './theme/my-themes/my-themes.component';
+import { AuthGard } from './guards/auth.guard';
+import { ThemesListComponent } from './theme/themes-list/themes-list.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,7 +17,7 @@ export const routes: Routes = [
   {
     path: 'themes',
     children: [
-      { path: '', component: MainComponent },
+      { path: '', component: ThemesListComponent },
       {
         path: ':themeId',
         component: CurrentThemeComponent,
@@ -26,15 +28,23 @@ export const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'add-theme', component: AddThemeComponent },
-  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'add-theme',
+   
+    loadComponent: () =>
+      import('./theme/add-theme/add-theme.component').then(
+        (c) => c.AddThemeComponent
+      ),
+      canActivate : [AuthGard]
+  },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGard] },
   {path: 'my-themes', children: [
     { path: '', component: MyThemesComponent },
     {
       path: ':themeId',
       component: CurrentThemeComponent,
     },
-  ],},
+  ],canActivate: [AuthGard]},
   { path: '**', redirectTo: '/404', pathMatch: 'full' },
 
 ];
