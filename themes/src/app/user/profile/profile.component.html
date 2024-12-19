@@ -85,9 +85,18 @@
                       value="885 888 888"
                       formControlName="tel"
                       class="profile-input"
+                      minlength="9"
                     />
                   </div>
                 </div>
+                @if(form.get('tel')?.touched){
+                  <div>
+                   
+                    @if(form.get('tel')?.errors?.['minlength']){
+                      <p class="profile-error">Telephone must be at least 9 characters!</p>
+                    }
+                  </div>
+                }
           
                 <div class="profile-btn-wrapper">
                   <button class="profile-cancel-button" (click)="onCancel($event)">Cancel</button>

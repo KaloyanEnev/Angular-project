@@ -36,13 +36,25 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     const { username, email, tel } = this.userService.user!;
     
-    this.profileDetails = { username, email, tel: tel! };
-
-    this.form.setValue({
-      username,
-      email,
-      tel: tel!,
+    this.userService.getProfile().subscribe({
+      next: (user) => {
+        this.profileDetails = {
+          username: user.username,
+          email: user.email,
+          tel: user.tel!,
+        };
+        
+        this.form.setValue({
+          username: user.username,
+          email: user.email,
+          tel: user.tel!,
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching profile:', err);
+      }
     });
+  
   }
   handleSaveProfile() {
     if (this.form.invalid) {
