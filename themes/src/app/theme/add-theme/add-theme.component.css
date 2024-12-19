@@ -83,7 +83,7 @@ textarea:focus {
 }
 .disabled-button {
     background-color: grey;
-    color: #ccc; /* Optional for a more disabled-like appearance */
+    color: #ccc; 
     cursor: not-allowed;
     width: 100%;
     padding: 15px;
@@ -93,3 +93,20 @@ textarea:focus {
     font-size: 18px;
     transition: background-color 0.3s ease;
   }
+  .error {
+    color: #e53e3e;
+    font-size: 14px;
+    margin: -12px 0 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background-color: #fff5f5;
+    border-left: 4px solid #fc8181;
+    border-radius: 0 8px 8px 0;
+}
+
+.error::before {
+    content: "⚠";
+    margin-right: 8px;
+    font-size: 14px;
+}

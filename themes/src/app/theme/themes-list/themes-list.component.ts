@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { Theme } from '../../types/theme';
 import { ApiService } from '../../api.service';
 import { DatePipe } from '@angular/common';
+import { SlicePipe } from '../../pipes/slice.pipe';
 
 @Component({
   selector: 'app-themes-list',
   standalone: true,
-  imports: [RouterLink,DatePipe],
+  imports: [RouterLink,DatePipe,SlicePipe],
   templateUrl: './themes-list.component.html',
   styleUrl: './themes-list.component.css'
 })

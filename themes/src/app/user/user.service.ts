@@ -17,27 +17,36 @@ export class UserService {
     return !!this.user;
   }
   constructor(private http: HttpClient) {
+    // Check if the user is saved in localStorage
+    const storedUser = localStorage.getItem(this.USER_KEY);
+    if (storedUser) {
+      this.user$$.next(JSON.parse(storedUser));
+    }
+
+    // Subscribe to user$ to update the user in memory
     this.user$.subscribe((user) => {
       this.user = user;
-    })
+    });
   }
-  login(email: string, password: string) {
-   
-   const {apiUrl} =environment ;
 
+  login(email: string, password: string) {
     return this.http.post<UserForAuth>(`/api/login`, { email, password }).pipe(
       tap((user) => {
         this.user$$.next(user);
+        localStorage.setItem(this.USER_KEY, JSON.stringify(user)); // Store user in localStorage
       })
     );
   }
+
   logout() {
-   return this.http.post('/api/logout',{}).pipe(
-    tap((user) => {
-      this.user$$.next(null);
-    })
-  );
+    return this.http.post('/api/logout', {}).pipe(
+      tap(() => {
+        this.user$$.next(null);
+        localStorage.removeItem(this.USER_KEY); // Remove user from localStorage
+      })
+    );
   }
+
   register(
     username: string,
     email: string,
@@ -56,6 +65,8 @@ export class UserService {
       .pipe(
         tap((user) => {
           this.user$$.next(user);
+          localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+
         })
       );
   }
@@ -75,4 +86,5 @@ export class UserService {
       })
       .pipe(tap((user) => this.user$$.next(user)));
   }
+  
 }

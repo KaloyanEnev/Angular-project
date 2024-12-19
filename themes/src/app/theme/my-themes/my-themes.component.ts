@@ -4,11 +4,12 @@ import { Theme } from '../../types/theme';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
 import { DatePipe } from '@angular/common';
+import { SlicePipe } from '../../pipes/slice.pipe';
 
 @Component({
   selector: 'app-my-themes',
   standalone: true,
-  imports: [RouterLink,DatePipe],
+  imports: [RouterLink,DatePipe,SlicePipe],
   templateUrl: './my-themes.component.html',
   styleUrl: './my-themes.component.css'
 })

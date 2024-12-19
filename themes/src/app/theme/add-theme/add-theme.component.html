@@ -2,7 +2,7 @@
     <h2>Create a New Theme</h2>
     <form #form="ngForm" (ngSubmit)="addTheme(form)">
       <!-- Theme Name Input -->
-      <label for="themeName">Theme Name</label>
+      <label for="themeName">Theme Name:</label>
       <input
         type="text"
         class="input-field"
@@ -15,14 +15,14 @@
         #themeName="ngModel"
       />
       @if(themeName?.touched && themeName?.errors?.['required']){
-        <p class="error-message">Theme name is required!</p>
+        <p class="error">Theme name is required!</p>
       }
       @if(themeName?.touched && themeName?.errors?.['minlength']){
-        <p class="error-message">Theme name must be at least 5 characters long!</p>
+        <p class="error">Theme name must be at least 5 characters long!</p>
       }
   
       <!-- Post Text Input -->
-      <label for="postText">Post Text</label>
+      <label for="postText">Post Text:</label>
       <textarea
         class="input-field"
         id="postText"
@@ -35,10 +35,10 @@
         #postText="ngModel"
       ></textarea>
       @if(postText?.touched && postText?.errors?.['required']){
-        <p class="error-message">Post text is required!</p>
+        <p class="error">Post text is required!</p>
       }
       @if(postText?.touched && postText?.errors?.['minlength']){
-        <p class="error-message">Post text must be at least 10 characters long!</p>
+        <p class="error">Post text must be at least 10 characters long!</p>
       }
   
       <!-- Create Theme Button -->

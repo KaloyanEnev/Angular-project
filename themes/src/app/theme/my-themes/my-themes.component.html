@@ -8,7 +8,7 @@
                 <li class="theme-item">
                     <a [routerLink]="theme._id" class="theme-link">
                         <div class="theme-summary">
-                            <h3 class="theme-name">{{theme.themeName}}</h3>
+                            <h3 class="theme-name">{{theme.themeName | slice : 20}}</h3>
                             <p class="theme-created-at">Created on: <span>{{theme.created_at  | date :"yyyy-mm-dd hh:mm:ss"}}</span></p>
                             <p class="theme-subscribers">Subscribers: <span>{{theme.subscribers.length || 0}}</span></p>
                         </div>

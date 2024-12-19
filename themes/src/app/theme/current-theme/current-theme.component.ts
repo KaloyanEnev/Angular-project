@@ -47,6 +47,21 @@ export class CurrentThemeComponent {
       
     });
   }
+  showDeleteModal = false;
+  commentToDelete: { themeId: string; postId: string } | null = null;
+
+  openDeleteModal(themeId: string, postId: string): void {
+    this.commentToDelete = { themeId, postId };
+    this.showDeleteModal = true;
+  }
+
+  confirmDelete(): void {
+    if (this.commentToDelete) {
+      this.onDelete(this.commentToDelete.themeId, this.commentToDelete.postId);
+      this.showDeleteModal = false;
+      this.commentToDelete = null;
+    }
+  }
   onDelete(themeId: string, postId: string): void {
     this.apiService.deletePost(themeId, postId).subscribe({
       next: (data) => {

@@ -10,6 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MyThemesComponent } from './theme/my-themes/my-themes.component';
 import { AuthGard } from './guards/auth.guard';
 import { ThemesListComponent } from './theme/themes-list/themes-list.component';
+import { AlreadyLogged } from './guards/already-logged.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,8 +27,8 @@ export const routes: Routes = [
   },
   { path: '404', component: NotFoundComponent },
 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate:[AlreadyLogged] },
+  { path: 'register', component: RegisterComponent, canActivate:[AlreadyLogged] },
   {
     path: 'add-theme',
    

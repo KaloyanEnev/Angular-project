@@ -15,6 +15,7 @@
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: all 0.3s ease;
 }
 
 .profile-header {
@@ -47,7 +48,6 @@ h2 {
 
 .profile-info {
     margin-bottom: 30px;
-    border-color: red;
 }
 
 .data-field {
@@ -88,17 +88,18 @@ h2 {
 .edit-button:hover {
     background-color: #0056b3;
 }
- /* Form in Edit Mode */
+
+/* Form in Edit Mode */
 .profile-box form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 }
 
 .profile-box input,
 .profile-box select {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -112,8 +113,29 @@ h2 {
 .profile-box select:focus {
     border-color: #007bff;
     outline: none;
+    background-color: #fff;
 }
 
+/* Error message styling */
+.profile-box .profile-error {
+    color: #e53e3e;
+    font-size: 14px;
+    margin: -12px 0 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background-color: #fff5f5;
+    border-left: 4px solid #fc8181;
+    border-radius: 0 8px 8px 0;
+}
+
+.profile-error::before {
+    content: "⚠";
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+/* Buttons styling */
 .profile-box .profile-btn-wrapper {
     display: flex;
     justify-content: space-between;
@@ -156,16 +178,62 @@ h2 {
     background-color: #4cae4c;
 }
 
-/* Error Message Styling */
-.profile-box .error {
-    font-size: 12px;
-    color: #e74c3c;
-    margin-top: 5px;
-}
-
 /* Focused input styling */
 .profile-box input:focus,
 .profile-box select:focus {
     border-color: #007bff;
     background-color: #fff;
+}
+
+.profile-box .profile-input-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.profile-box .profile-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.profile-box .profile-tel-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-box .profile-tel-select {
+    width: 25%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-right: 8px;
+    box-sizing: border-box;
+}
+
+.profile-box .profile-tel-select:focus {
+    border-color: #007bff;
+}
+
+.profile-box .profile-input {
+    width: 75%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+.profile-box .profile-input:focus {
+    border-color: #007bff;
+    background-color: #fff;
+}
+
+.profile-box .profile-cancel-button,
+.profile-box .profile-save-button {
+    width: 48%;
 }
