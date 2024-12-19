@@ -39,8 +39,7 @@ export class CurrentThemeComponent {
         this.updateLikesWithHasLiked(this.theme, this.userId)
         this.hasSubscribed = this.checkIfHasSubscribed(this.theme, this.userId);
 
-        console.log(this.theme);
-        console.log("userid",this.userId);
+       
         
         
       
@@ -76,7 +75,6 @@ export class CurrentThemeComponent {
   }
   addComment(form: NgForm) {
     const idTheme = this.router.snapshot.params['themeId'];
-    console.log(idTheme);
   
     if (form.invalid) {
       return;

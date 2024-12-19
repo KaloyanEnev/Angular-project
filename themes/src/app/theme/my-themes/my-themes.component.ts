@@ -25,7 +25,6 @@ themes : Theme[] = [];
     this.apiService.getThemes().subscribe(t =>{
 
        this.themes= t;
-       console.log(this.userId);
        
         this.themes = this.themes.filter(theme => theme.userId._id === this.userId);
        
