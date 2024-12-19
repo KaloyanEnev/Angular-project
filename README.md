@@ -1,12 +1,5 @@
 # Angular-project
-to do - add validation and error check, login register and so on !!!, fix buttons to be shown disabled until all required fields and error checks are done succ!!
 
-
-for 19.12 to do - fix the css and html where needed. 
-- add pipes for dates and longer words!
-- can try to add edit post functionality
-- -- try to update the pages without refreshing page
-- add styles for the errros we dont havr any
 
 This Angular project is designed to manage themes, posts, and user interactions such as liking posts, adding comments, and subscribing to themes.
 ---
